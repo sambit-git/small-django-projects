@@ -1,0 +1,37 @@
+{% load static %}
+{% include 'base/base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'code/code.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div id="main-section">
+    <div id="code">
+        <div class="label">Code</div>
+        <!-- <div class="display-area" id="code-area" contenteditable="true">
+            {% if user_code %}
+                {{ user_code.strip|linebreaks }}
+            {% endif %}
+        </div> -->
+        <form action="" method="POST">{% csrf_token %}
+            {{ frm }}
+            <input type="submit" value="Run Code" id="btn-run">
+        </form>
+    </div>
+    <div id="output">
+        <div class="label">Output</div>
+        <div class="display-area" id="output-area" contenteditable="false">
+            {% if output %}
+                {{ output|linebreaks }}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block body %}
+<script src="{% static 'code/code.js' %}"></script>
+{% endblock %}
